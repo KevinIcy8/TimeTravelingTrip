@@ -4,7 +4,7 @@ public class TimeTravelingRun {
         Scanner s = new Scanner(System.in);
         System.out.print("Welcome to this Time Traveling Trip!\nMy name is Dr. Chronos. What is your name?\n");
         String userName = s.nextLine();
-        System.out.print("Hello, " + userName + ". I have this watch that can travel to any time period. Now tell me how far do you want to travel into the past? (Maximum 0000\n");
+        System.out.print("Hello, " + userName + ". I have this watch that can travel to any time period.\nNow tell me how far do you want to travel into the past? (Maximum 0000)\n");
         int earliestTime = s.nextInt();
         System.out.print("Now tell how far do you want to travel into the future? (Maximum 2100)\n");
         int latestTime = s.nextInt();
@@ -13,6 +13,6 @@ public class TimeTravelingRun {
         int timePeriod = s.nextInt();
         System.out.println("Oh, I forgot to mention! The watch is little glitchy, so good luck...");
         Thread.sleep(1000);
-        timeTrip.travelTo(timePeriod);
+        System.out.println(timeTrip.travelTo(timePeriod));
     }
 }
