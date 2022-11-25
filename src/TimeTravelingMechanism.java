@@ -2,13 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TimeTravelingMechanism {
-    private int earliestTime;
-    private int latestTime;
-
+    private int yearOfTravel;
     int currentYear = 2022;
-    public TimeTravelingMechanism(int yearsInPast, int yearsInFuture){
-        earliestTime = currentYear - yearsInPast;
-        latestTime = currentYear + yearsInFuture;
+    public TimeTravelingMechanism(int yearOfTravel){
+        this.yearOfTravel = yearOfTravel;
+    }
+
+    public TimeTravelingMechanism(){
+        yearOfTravel = (int)(Math.random()*2100);
     }
 
     public String travelTo(int yearOfTravel) throws InterruptedException {
@@ -17,10 +18,12 @@ public class TimeTravelingMechanism {
             randomYear = (int) (Math.random() * 2100);
             yearOfTravel = randomYear;
         }
-        else if(yearOfTravel>=0 && yearOfTravel<=500){
+        else if((yearOfTravel>=0 && yearOfTravel<=500) || (randomYear>=0 && randomYear<=500)){
             return "Rome, " +yearOfTravel;
         }
-
+        else if(yearOfTravel>500 && yearOfTravel<=900 || (randomYear>500 && randomYear<=900)){
+            return "China, " +yearOfTravel;
+        }
         return String.valueOf(randomYear);
     }
 
@@ -32,20 +35,44 @@ public class TimeTravelingMechanism {
         return false;
     }
 
-    public int rewindSequence(int yearOfTravel) throws InterruptedException {
+    public int rewindSequence(){
         int rewindYear = currentYear--;
         return rewindYear;
     }
-    public int forwardSequence(int yearOfTravel){
-        return 10;
+    public int forwardSequence(){
+        int forwardYear = currentYear++;
+        return forwardYear;
     }
 
-    public String timeEvent(int yearOfTravel){
-        if(yearOfTravel>=0 && yearOfTravel<=500){
-
+    public boolean isTravelingPast(){
+        if(yearOfTravel < currentYear){
+            return true;
         }
-        return "sup";
+        return false;
     }
+
+    public boolean isTravelingFuture(){
+        if(yearOfTravel > currentYear){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEnoughForTransitionP(){
+        if(currentYear - yearOfTravel >= 10){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEnoughForTransitionF(){
+        if(yearOfTravel - currentYear >= 10){
+            return true;
+        }
+        return false;
+    }
+
+
 
     public String swordSpearBow(int userChoice){
         int compChoice = (int)(Math.random()*3)+1;
